@@ -1,0 +1,75 @@
+<?php
+	session_start();
+	include("connection.php");
+	
+	$msg = ' ';
+            
+            if (isset($_POST['login']) && !empty($_POST['username']) 
+               && !empty($_POST['password'])) {
+				
+               if ($_POST['username'] == 'NBStud' && 
+                  $_POST['password'] == 'Superbros') {
+                  $_SESSION['valid'] = true;
+                 
+                
+                 header("Location: index.html");
+                  echo 'Valid username and password';
+				  
+               }else {
+                  $msg = 'Invalid username or password';
+               }
+            }
+	
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+</head>
+<body>
+
+	<style type = "text/css">
+	    #text{
+			
+		height: 25px;
+		border-radius: 5px;
+		padding: 4px;
+		border: solid thin #aaa;
+		}
+		
+		#button{
+			padding: 10px;
+			width: 100px;
+			color: white;
+			background-color: Lightblue;
+			border: none;
+		}
+
+		#box{
+			background-color: grey;
+			margin: auto;
+			width: 300px;
+			padding: 20px;
+		}
+		</style>
+		
+		<form action = "login.php" method = "POST">
+		<table>
+		<p><strong>username:</strong><br>
+			<input type = "text" name="username" size = 20 maxlength=20 required autofocus>
+		</p>
+			
+		<p><strong>password:</strong><br>
+			<input type="password" name="password" size=15 maxlength=20 required>
+		</p>
+		
+		<input type="hidden" name="userid" value="admin">
+		
+        <p><input type="submit" name="login" value="login"></p>
+		
+  </table>
+  </form>
+</body>
+</html>
